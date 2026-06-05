@@ -4,7 +4,7 @@ import joblib
 import pandas as pd
 import streamlit as st
 
-from data_processing import load_data, process_data
+from data_processing import DataProcessor
 from model_training import ModelTrainer
 
 
@@ -31,8 +31,8 @@ def run_app():
 
     if train != 'Choose':
         if train == 'Yes':
-            data = load_data()
-            x_train, y_train = process_data(data)
+            processor = DataProcessor()
+            x_train, y_train = processor.process_data()
             trainer = ModelTrainer('SVC')
             trainer.train_model(x_train, y_train)
 
